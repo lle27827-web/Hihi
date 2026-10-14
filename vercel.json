@@ -19,7 +19,13 @@
       "framework": "vite",
       "installCommand": "pnpm install --frozen-lockfile --filter @workspace/task-manager...",
       "buildCommand": "pnpm -r --filter @workspace/task-manager... --if-present run build",
-      "outputDirectory": "dist/public"
+      "outputDirectory": "dist/public",
+      "rewrites": [
+        {
+          "source": "/(.*)",
+          "destination": "/index.html"
+        }
+      ]
     }
   },
   "rewrites": [

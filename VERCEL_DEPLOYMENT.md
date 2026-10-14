@@ -12,6 +12,8 @@ Mỗi service cài đúng workspace dependencies bằng pnpm, dùng lockfile c�
 
 API Express xuất ứng dụng trực tiếp để Vercel chạy dưới dạng Function; listener `app.listen()` chỉ bật trong môi trường Replit, nơi workflow cung cấp `PORT`.
 
+Service `task-manager` rewrite các đường dẫn SPA chưa khớp tệp tĩnh về `/index.html`, để `/sign-in`, `/sign-up` và callback đăng nhập hoạt động khi mở trực tiếp hoặc tải lại trang. Rewrite này chỉ áp dụng trong service web, không ảnh hưởng `/api/*`.
+
 ## Biến môi trường cần thiết
 
 Thêm các biến này trong Vercel Project Settings → Environment Variables. Giá trị được cấu hình trong Replit không tự đồng bộ sang Vercel.
