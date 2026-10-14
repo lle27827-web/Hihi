@@ -204,6 +204,10 @@
 .auth-frame { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 50px 16px; background: hsl(var(--background)); }
 .auth-back { position: fixed; top: 20px; left: 20px; display: inline-flex; align-items: center; gap: 6px; color: hsl(var(--muted-foreground)); font-size: 13px; font-weight: 700; text-decoration: none; }
 .auth-back:hover { color: hsl(var(--primary)); }
+.auth-mode-switch { width: min(100%, 440px); display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border: 1px solid hsl(var(--border)); border-radius: 12px; background: hsl(var(--card)); }
+.auth-mode-switch a { display: flex; min-height: 42px; align-items: center; justify-content: center; border-radius: 8px; color: hsl(var(--muted-foreground)); font-size: 13px; font-weight: 700; text-decoration: none; }
+.auth-mode-switch a:hover { color: hsl(var(--foreground)); }
+.auth-mode-switch a.active { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
 .auth-landing { width: min(100%, 440px); display: grid; justify-items: center; gap: 14px; padding: 32px 24px; border: 1px solid hsl(var(--border)); border-radius: 18px; background: hsl(var(--card)); text-align: center; box-shadow: var(--shadow); }
 .auth-brand-mark { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 15px; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
 .auth-brand-name { margin: 0; color: hsl(var(--primary)); font-size: 12px; font-weight: 800; letter-spacing: .14em; }

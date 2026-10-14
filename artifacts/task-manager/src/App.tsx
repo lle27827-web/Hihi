@@ -107,6 +107,7 @@ function ClerkCacheInvalidator() {
 function SignInPage() {
   return (
     <AuthFrame>
+      <AuthModeSwitch active="sign-in" />
       <SignIn
         routing="path"
         path={`${basePath}/sign-in`}
@@ -120,8 +121,32 @@ function SignInPage() {
 function SignUpPage() {
   return (
     <AuthFrame>
+      <AuthModeSwitch active="sign-up" />
       <SignUp appearance={clerkAppearance} routing="path" path={`${basePath}/sign-up`} signInUrl={`${basePath}/sign-in`} />
     </AuthFrame>
+  );
+}
+
+function AuthModeSwitch({ active }: { active: 'sign-in' | 'sign-up' }) {
+  return (
+    <nav className="auth-mode-switch" aria-label="Chọn đăng nhập hoặc đăng ký">
+      <Link
+        href="/sign-in"
+        className={active === 'sign-in' ? 'active' : ''}
+        aria-current={active === 'sign-in' ? 'page' : undefined}
+        data-testid="link-auth-sign-in"
+      >
+        Đăng nhập
+      </Link>
+      <Link
+        href="/sign-up"
+        className={active === 'sign-up' ? 'active' : ''}
+        aria-current={active === 'sign-up' ? 'page' : undefined}
+        data-testid="link-auth-sign-up"
+      >
+        Đăng ký
+      </Link>
+    </nav>
   );
 }
 
@@ -151,7 +176,7 @@ function LoginLanding() {
         <p className="auth-brand-name">SỔ CÔNG</p>
         <h1 id="auth-welcome-title">Đăng nhập để tiếp tục</h1>
         <p className="auth-landing-copy">
-          Đăng nhập để xem dữ liệu nhân viên. Sau khi xác thực, hệ thống sẽ kiểm tra quyền truy cập và chỉ cho phép chủ sở hữu hoặc quản lý chỉnh sửa.
+          Đăng nhập hoặc đăng ký trước. Hệ thống chỉ kiểm tra quyền sau khi bạn đăng nhập và trước khi hiển thị dữ liệu nhân viên.
         </p>
         <Link href="/sign-in" className="btn primary auth-landing-action" data-testid="link-login-to-continue">
           Đăng nhập <ArrowUpRight size={16} aria-hidden="true" />
@@ -159,7 +184,7 @@ function LoginLanding() {
         <Link href="/sign-up" className="auth-landing-secondary" data-testid="link-create-account">
           Tạo tài khoản
         </Link>
-        <p className="auth-landing-note"><LockKeyhole size={14} aria-hidden="true" /> Dữ liệu chỉ tải sau khi đăng nhập.</p>
+        <p className="auth-landing-note"><LockKeyhole size={14} aria-hidden="true" /> Trang đăng nhập và đăng ký không yêu cầu quyền quản lý.</p>
       </section>
     </AuthFrame>
   );
@@ -203,6 +228,7 @@ function ClerkRoutes() {
       <QueryClientProvider client={queryClient}>
         <ClerkCacheInvalidator />
         <Switch>
+          {/* Public authentication routes intentionally bypass application role checks. */}
           <Route path="/sign-in/*?" component={SignInPage} />
           <Route path="/sign-up/*?" component={SignUpPage} />
           <Route>
